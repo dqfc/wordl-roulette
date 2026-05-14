@@ -8,7 +8,7 @@
                     class="md:absolute md:left-1/2 md:top-3 md:transform-gpu md:-translate-x-1/2 mt-5 text-3xl font-medium text-center text-gray-800 dark:text-gray-200 cursor-help md:border-b-2 border-dashed hover:border-gray-600 dark:border-gray-600 dark:hover:border-gray-300"
                     @click="showAboutModal = true"
                 >
-                    Extreme Demon Roulette
+                    Worst Demon List Roulette
                     <p v-if="useOldList">2017 List</p>
                 </h1>
                 <div class="flex mt-5 mx-3 justify-between items-center">
@@ -110,8 +110,8 @@
                             >npesta</a
                         >, website by
                         <a href="https://github.com/matcool/" class="text-blue-500 hover:underline"
-                            >me :)</a
-                        >
+                            >matcool</a
+                        >, fork for Worst GDPS by <a href="https://github.com/dqfc" class="text-blue-500 hover:underline">reject</a>
                     </p>
                 </section>
                 <section class="pt-4">
