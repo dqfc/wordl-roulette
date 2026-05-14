@@ -17,6 +17,18 @@ export interface PointercrateDemon {
     video: string | null;
 }
 
+export interface LevelApiDemon {
+    id: number;
+    lvlname: string;
+    creator: string;
+    ytlink: string | null;
+    position: number;
+    legacy: boolean;
+    verifier: string;
+    worstid: string;
+    mainid: string;
+}
+
 export interface SimplifiedDemon {
     name: string;
     position: number;
@@ -24,6 +36,7 @@ export interface SimplifiedDemon {
     creator: string;
     levelID?: number;
     link?: string;
+    legacy?: boolean;
 }
 
 export interface RouletteState {

@@ -1,9 +1,22 @@
 import { encode, decode } from '@msgpack/msgpack';
 import { inflateSync, deflateSync, strFromU8, unzlibSync } from 'fflate';
 import { base64ToBytes } from 'byte-base64';
-import type { PointercrateDemon, SimplifiedDemon, RouletteState } from './types';
+import type { LevelApiDemon, PointercrateDemon, SimplifiedDemon, RouletteState } from './types';
 
-export function simplifyDemon(demon: PointercrateDemon): SimplifiedDemon {
+export function simplifyDemon(demon: LevelApiDemon | PointercrateDemon): SimplifiedDemon {
+    if ('lvlname' in demon) {
+        const match = demon.ytlink?.match(/\/embed\/([^/?&]+)/);
+        return {
+            name: demon.lvlname,
+            creator: demon.creator,
+            position: demon.position,
+            levelID: Number(demon.worstid) || undefined,
+            video: match ? match[1] : null,
+            link: `https://pointercrate.com/demonlist/${demon.position}`,
+            legacy: demon.legacy,
+        };
+    }
+
     const match = demon.video?.match(/https:\/\/www\.youtube\.com\/watch\?v=(.{11})/);
     return {
         name: demon.name,

@@ -131,7 +131,7 @@ import Demon from './components/Demon.vue';
 import Modal from './components/Modal.vue';
 import SaveModal from './components/SaveModal.vue';
 import GiveUpModal from './components/GiveUpModal.vue';
-import { RouletteState, SimplifiedDemon } from './types';
+import { RouletteState, SimplifiedDemon, LevelApiDemon } from './types';
 import { shuffle, clearArray } from './utils';
 import { unloadHandler } from './unloadHandler';
 import { veryOldDemons } from './veryOldList';
@@ -154,18 +154,13 @@ export default defineComponent({
 
         let demons = reactive([] as SimplifiedDemon[]);
 
-        async function fetchDemons(
-            after: number = 0,
-            limit: number = 100
-        ): Promise<SimplifiedDemon[]> {
-            const response = await fetch(
-                `https://pointercrate.com/api/v2/demons/listed/?limit=${limit}&after=${after}`
-            );
-            if (response.ok) {
-                return (await response.json()).map(simplifyDemon);
-            } else {
+        async function fetchDemons(): Promise<SimplifiedDemon[]> {
+            const response = await fetch('https://146.59.93.5/demonlist/levelapi.php');
+            if (!response.ok) {
                 return [];
             }
+            const data = (await response.json()) as LevelApiDemon[];
+            return data.map(simplifyDemon);
         }
 
         const playing = ref(false);
@@ -191,12 +186,15 @@ export default defineComponent({
             //         demons.push(fakeDemon(fakeDemonName(), 'MAT', null));
             //     }
             // }
-            if (selectedLists.main) demons.push(...(await fetchDemons(0, 75)));
-            if (selectedLists.extended) demons.push(...(await fetchDemons(75, 75)));
+            const allDemons = await fetchDemons();
+            if (selectedLists.main) {
+                demons.push(...allDemons.filter(demon => demon.legacy !== true && demon.position <= 75));
+            }
+            if (selectedLists.extended) {
+                demons.push(...allDemons.filter(demon => demon.legacy !== true && demon.position > 75 && demon.position <= 150));
+            }
             if (selectedLists.legacy) {
-                demons.push(...(await fetchDemons(150)));
-                // is this even worth it
-                demons.push(...(await fetchDemons(250)).filter(demon => demon.levelID));
+                demons.push(...allDemons.filter(demon => demon.legacy === true));
             }
             if (useOldList.value) {
                 demons = veryOldDemons.slice();
