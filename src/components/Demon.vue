@@ -14,7 +14,7 @@
         <div class="flex mt-2 md:mt-0 justify-between md:justify-start">
             <div class="flex flex-col md:ml-5">
                 <a
-                    :href="demon.link ?? `https://pointercrate.com/demonlist/${demon.position}`"
+                    :href="demon.link ?? `https://146.59.93.5/demonlist/#${demon.position}`"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
