@@ -155,7 +155,7 @@ export default defineComponent({
         let demons = reactive([] as SimplifiedDemon[]);
 
         async function fetchDemons(): Promise<SimplifiedDemon[]> {
-            const response = await fetch('https://146.59.93.5/demonlist/levelapi.php');
+            const response = await fetch('https://146.59.93.5/demonlist/api/levels.php');
             if (!response.ok) {
                 return [];
             }
