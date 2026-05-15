@@ -188,10 +188,10 @@ export default defineComponent({
             // }
             const allDemons = await fetchDemons();
             if (selectedLists.main) {
-                demons.push(...allDemons.filter(demon => demon.legacy !== true && demon.position <= 75));
+                demons.push(...allDemons.filter(demon => demon.legacy !== true && demon.position <= 125));
             }
             if (selectedLists.extended) {
-                demons.push(...allDemons.filter(demon => demon.legacy !== true && demon.position > 75 && demon.position <= 150));
+                demons.push(...allDemons.filter(demon => demon.legacy !== true && demon.position > 125 && demon.position <= 280));
             }
             if (selectedLists.legacy) {
                 demons.push(...allDemons.filter(demon => demon.legacy === true));
