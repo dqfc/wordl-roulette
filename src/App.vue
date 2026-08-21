@@ -111,7 +111,7 @@
                         >, website by
                         <a href="https://github.com/matcool/" class="text-blue-500 hover:underline"
                             >matcool</a
-                        >, fork for Worst GDPS by <a href="https://github.com/dqfc" class="text-blue-500 hover:underline">reject</a>
+                        >, fork for Worst GDPS by <a href="https://github.com/watchinchaos" class="text-blue-500 hover:underline">reject</a>
                     </p>
                 </section>
                 <section class="pt-4">
